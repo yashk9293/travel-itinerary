@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "3ec33b6d-31e2-4d74-88e8-eddd11516d83",
+		"name": "Travel Itinerary API",
+		"description": "API to manage and fetch travel itineraries.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32613882"
+	},
+	"item": [
+		{
+			"name": "post_itineraries",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Krabi 4 Nights Escape\",\r\n  \"region\": \"Krabi\",\r\n  \"nights\": 4,\r\n  \"days\": [\r\n    {\r\n      \"dayNumber\": 1,\r\n      \"accommodation\": {\r\n        \"hotelName\": \"Krabi Resort\",\r\n        \"location\": \"Ao Nang Beach\"\r\n      },\r\n      \"activities\": [\r\n        {\r\n          \"name\": \"Kayaking in Ao Thalane\",\r\n          \"description\": \"Explore the beautiful mangrove forests of Ao Thalane\"\r\n        }\r\n      ],\r\n      \"transfers\": [\r\n        {\r\n          \"from\": \"Airport\",\r\n          \"to\": \"Hotel\",\r\n          \"mode\": \"Taxi\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"dayNumber\": 2,\r\n      \"accommodation\": {\r\n        \"hotelName\": \"Krabi Resort\",\r\n        \"location\": \"Ao Nang Beach\"\r\n      },\r\n      \"activities\": [\r\n        {\r\n          \"name\": \"Island Hopping Tour\",\r\n          \"description\": \"Visit famous islands like Phi Phi and Bamboo Island\"\r\n        }\r\n      ],\r\n      \"transfers\": [\r\n        {\r\n          \"from\": \"Hotel\",\r\n          \"to\": \"Island Tour Departure Point\",\r\n          \"mode\": \"Boat\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"dayNumber\": 3,\r\n      \"accommodation\": {\r\n        \"hotelName\": \"Krabi Resort\",\r\n        \"location\": \"Ao Nang Beach\"\r\n      },\r\n      \"activities\": [\r\n        {\r\n          \"name\": \"Hot Springs Visit\",\r\n          \"description\": \"Relax in Krabi’s famous hot springs\"\r\n        }\r\n      ],\r\n      \"transfers\": [\r\n        {\r\n          \"from\": \"Hotel\",\r\n          \"to\": \"Hot Springs\",\r\n          \"mode\": \"Van\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"dayNumber\": 4,\r\n      \"accommodation\": {\r\n        \"hotelName\": \"Krabi Resort\",\r\n        \"location\": \"Ao Nang Beach\"\r\n      },\r\n      \"activities\": [\r\n        {\r\n          \"name\": \"Visit Railay Beach\",\r\n          \"description\": \"Relax and enjoy the beauty of Railay Beach\"\r\n        }\r\n      ],\r\n      \"transfers\": [\r\n        {\r\n          \"from\": \"Hotel\",\r\n          \"to\": \"Railay Beach\",\r\n          \"mode\": \"Boat\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/itineraries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"itineraries"
+					]
+				},
+				"description": "Creates a new travel itinerary with basic information such as title, region, and number of nights.\n\n**Errors:**\n\n- `400 Bad Request`: Missing required fields like title, region, or nights.\n    \n- `500 Internal Server Error`: Server issue."
+			},
+			"response": []
+		},
+		{
+			"name": "get_itineraries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/itineraries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"itineraries"
+					]
+				},
+				"description": "Fetches all existing itineraries from the database along with their associated days, activities, hotels, and transfers."
+			},
+			"response": []
+		},
+		{
+			"name": "recommeded_itineraries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/itineraries/recommended?nights=100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"itineraries",
+						"recommended"
+					],
+					"query": [
+						{
+							"key": "nights",
+							"value": "100"
+						}
+					]
+				},
+				"description": "Returns a recommended itinerary based on the given number of nights.\n\n**Query Parameter:**\n\n- `nights` (required): Number of nights to fetch recommendation for."
+			},
+			"response": []
+		},
+		{
+			"name": "delete_itinerary",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/itineraries/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"itineraries",
+						"3"
+					]
+				},
+				"description": "Deletes an itinerary by its ID.\n\n**Path Parameter:**\n\n- `id` (required): The ID of the itinerary to delete.\n    \n\n**Errors:**\n\n- `404 Not Found`: Itinerary not found.\n    \n- `500 Internal Server Error`: Server error."
+			},
+			"response": []
+		}
+	]
+}
